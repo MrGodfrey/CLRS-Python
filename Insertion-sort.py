@@ -1,5 +1,5 @@
 def insertionSort(array):
-    "Insertion sort procedure"
+    "Insertion sort"
     for j in range(1, len(array)):
         key = array[j]
         i = j

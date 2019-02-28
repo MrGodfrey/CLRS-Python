@@ -35,11 +35,42 @@ def maxSubarray(low,high)->[int,int,int]:
         else:
             return [rightLow,rightHigh,rightSum]
             
+def linearMaxSubarray(array):
+    "Exercise 4.1.5, linear-time algorithm for the maximum-subarray problem"
+    n=len(array)
+    r=l=0
+    maxSum=array[l]
+    rightSum=0
+
+    # search for the right index of maximum-subarray
+    for j in range(1,n):
+        rightSum=rightSum+array[j]
+        if rightSum  >= 0:
+            r=j
+            maxSum=maxSum+rightSum
+            rightSum=0
+
+    # search for the left index of maximum-subarray
+    l=r
+    leftSum=0
+    for j in reversed(range(r)):
+        leftSum=leftSum+array[j]
+        if leftSum >0:
+            l=j
+            leftSum=0
+
+    maxSum=maxSum-leftSum
+    
+    return [l,r+1,maxSum]
 
 # Test part
 if __name__ == "__main__":
-    A=[-1,2,18,-2,-4,55,-6]
+    A=[1,2,-10,3,4,5,-6,8,10,2,4,6,-17,5]
     left,right,maxSum=maxSubarray(0,len(A))
     print(f'The array is {A}')
     B=A[left:right]
     print(f'The max sum subarray is {B}, and the max sum is {maxSum}.')
+
+    left,right,maxSum=linearMaxSubarray(A)
+    B=A[left:right]
+    print(f'Use linear max subarray procedure.\nThe max sum subarray is {B}, and the max sum is {maxSum}.')

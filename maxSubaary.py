@@ -38,8 +38,8 @@ def maxSubarray(low,high)->[int,int,int]:
 def linearMaxSubarray(array):
     "Exercise 4.1.5, linear-time algorithm for the maximum-subarray problem"
     n=len(array)
-    r=l=0
-    maxSum=array[l]
+    r=0
+    maxSum=array[0]
     rightSum=0
 
     # search for the right index of maximum-subarray
